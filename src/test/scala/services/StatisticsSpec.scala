@@ -2,6 +2,7 @@ package services
 
 import org.scalatest.funsuite.AnyFunSuite
 import models._
+import models.types._
 
 class StatisticsSpec extends AnyFunSuite {
 
