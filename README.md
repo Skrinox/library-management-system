@@ -53,5 +53,12 @@ sbt doc
 
 Every time you quit the app, `data/catalog.json` is automatically saved and backed up with a timestamp.
 
+## Authors
+
+- [Enzo Greiner](https://github.com/Grenzo67)
+- [Hugo Heng](https://github.com/HugoHeng)
+- [Cédric Hombourger](https://github.com/LeTinkyWinky)
+- [Kevin Kurtz](https://github.com/ktzkvin)
+- [Virgile Martel](https://github.com/Skrinox)
 
 _Developed as part of an academic project at EFREI_
