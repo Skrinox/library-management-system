@@ -1,0 +1,284 @@
+{
+  "books": [
+    {
+  "isbn": "978-0-000000-01-9",
+  "title": "Terminal Elegy",
+  "authors": ["Lucian Petrescu"],
+  "publicationYear": 2005,
+  "genre": "Classic",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-00-0",
+  "title": "The Ashen Key",
+  "authors": ["Noor Idrissi"],
+  "publicationYear": 2001,
+  "genre": "Fiction",
+  "availability": "CheckedOut"
+},
+    {
+  "isbn": "978-0-000000-00-1",
+  "title": "Fractal Remnants",
+  "authors": ["Sergei Komarov", "Lina Rojas"],
+  "publicationYear": 1998,
+  "genre": "SciFi",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-00-2",
+  "title": "Songs of Iron",
+  "authors": ["Mireille Aubert"],
+  "publicationYear": 1985,
+  "genre": "Classic",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-00-3",
+  "title": "Echoes from the Throat",
+  "authors": ["Tommaso Venturi", "Zara El-Din"],
+  "publicationYear": 2017,
+  "genre": "Fiction",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-00-4",
+  "title": "Orphans of Mercury",
+  "authors": ["Anastasia Becker"],
+  "publicationYear": 2020,
+  "genre": "SciFi",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-00-5",
+  "title": "Feathers in the Gear",
+  "authors": ["Elias Ndungu"],
+  "publicationYear": 1991,
+  "genre": "Classic",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-00-6",
+  "title": "The Frozen Accord",
+  "authors": ["Karim Taheri"],
+  "publicationYear": 2004,
+  "genre": "Fiction",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-00-7",
+  "title": "Vault of Winter Suns",
+  "authors": ["Verena Schwarz"],
+  "publicationYear": 1993,
+  "genre": "SciFi",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-00-8",
+  "title": "The Algae Mirror",
+  "authors": ["Jin Soo Park", "Raúl Vargas"],
+  "publicationYear": 2013,
+  "genre": "Fiction",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-00-9",
+  "title": "The Thirteenth Eclipse",
+  "authors": ["Fatima Bakkali"],
+  "publicationYear": 1989,
+  "genre": "Classic",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-01-0",
+  "title": "A Theory of Dust",
+  "authors": ["Nils Johansson"],
+  "publicationYear": 2010,
+  "genre": "SciFi",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-01-1",
+  "title": "Skylines Before Thunder",
+  "authors": ["Imani Okoro"],
+  "publicationYear": 2016,
+  "genre": "Fiction",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-01-2",
+  "title": "Lanterns on the Void",
+  "authors": ["Greta Kowalczyk"],
+  "publicationYear": 1996,
+  "genre": "Classic",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-01-3",
+  "title": "Seven Degrees of Gravity",
+  "authors": ["Kazuki Nakamura"],
+  "publicationYear": 2022,
+  "genre": "SciFi",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-01-4",
+  "title": "Seraphim Underground",
+  "authors": ["Nour Haddad", "Salim Brahmi"],
+  "publicationYear": 2007,
+  "genre": "Fiction",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-01-5",
+  "title": "The Paper Dominion",
+  "authors": ["Elisa Ferro"],
+  "publicationYear": 1983,
+  "genre": "Classic",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-01-6",
+  "title": "Corridors of Silence",
+  "authors": ["Leandro Cabral"],
+  "publicationYear": 2002,
+  "genre": "Fiction",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-01-7",
+  "title": "Radio Eden",
+  "authors": ["Hassan Ait Lahcen"],
+  "publicationYear": 1995,
+  "genre": "SciFi",
+  "availability": "Available"
+},
+    {
+  "isbn": "978-0-000000-01-8",
+  "title": "Shadows Made Real",
+  "authors": ["Anja Fischer"],
+  "publicationYear": 2018,
+  "genre": "Fiction",
+  "availability": "Available"
+}
+  ],
+  "users": [
+    {
+  "type": "Student",
+  "id": "69",
+  "name": "martin",
+  "email": "martin@gmail.com",
+  "major": "5"
+},
+    {
+  "type": "Student",
+  "id": "student-001",
+  "name": "Nicolas Boulay",
+  "email": "n.boulay@etudiants.univ-lyon.fr",
+  "major": "Physics"
+},
+    {
+  "type": "Student",
+  "id": "student-002",
+  "name": "Sara Mounir",
+  "email": "s.mounir@univ-montpellier.fr",
+  "major": "Philosophy"
+},
+    {
+  "type": "Student",
+  "id": "student-003",
+  "name": "Théo Bianchi",
+  "email": "t.bianchi@univ-rennes.fr",
+  "major": "Literature"
+},
+    {
+  "type": "Student",
+  "id": "student-004",
+  "name": "Aya Haddad",
+  "email": "a.haddad@etud.u-psud.fr",
+  "major": "Engineering"
+},
+    {
+  "type": "Student",
+  "id": "student-005",
+  "name": "Zoe Aït Youssef",
+  "email": "z.ait@etu.univ-paris.fr",
+  "major": "Architecture"
+},
+    {
+  "type": "Faculty",
+  "id": "faculty-001",
+  "name": "Prof. Léa Marchal",
+  "department": "Sociology"
+},
+    {
+  "type": "Faculty",
+  "id": "faculty-002",
+  "name": "Dr. Marius Geiger",
+  "department": "Physics"
+},
+    {
+  "type": "Faculty",
+  "id": "faculty-003",
+  "name": "Prof. Samira Belkacem",
+  "department": "Comparative Literature"
+},
+    {
+  "type": "Faculty",
+  "id": "faculty-004",
+  "name": "Dr. Antoine Leclerc",
+  "department": "Mathematics"
+},
+    {
+  "type": "Faculty",
+  "id": "faculty-005",
+  "name": "Dr. Elina Kuznetsova",
+  "department": "Cognitive Science"
+},
+    {
+  "type": "Librarian",
+  "id": "lib-001",
+  "name": "Jean-Michel Arnaud"
+},
+    {
+  "type": "Librarian",
+  "id": "lib-002",
+  "name": "Clara Voigt"
+},
+    {
+  "type": "Librarian",
+  "id": "lib-003",
+  "name": "Rania Tlemcani"
+},
+    {
+  "type": "Librarian",
+  "id": "lib-004",
+  "name": "Jules Tremblay"
+},
+    {
+  "type": "Librarian",
+  "id": "lib-005",
+  "name": "Evelyne Marchesseau"
+}
+  ],
+  "transactions": [
+    {
+  "book": {
+  "isbn": "978-0-000000-01-9",
+  "title": "Terminal Elegy",
+  "authors": ["Lucian Petrescu"],
+  "publicationYear": 2005,
+  "genre": "Classic",
+  "availability": "CheckedOut"
+},
+  "user": {
+  "type": "Student",
+  "id": "69",
+  "name": "martin",
+  "email": "martin@gmail.com",
+  "major": "5"
+},
+  "timestamp": "2025-07-25T23:21:01.949",
+  "transactionType": "Borrow"
+}
+  ]
+}
