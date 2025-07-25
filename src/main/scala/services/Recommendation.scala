@@ -1,6 +1,7 @@
 package services
 
 import models._
+import models.types.*
 
 object Recommendation:
 
