@@ -9,10 +9,19 @@ import services._
 import java.time.LocalDateTime
 import scala.io.StdIn.readLine
 
+import services.FileIO
+
+val initialCatalog = FileIO.loadCatalogFromFile("data/catalog.json").getOrElse {
+  println("⚠️ Failed to load catalog.json, starting with empty catalog.")
+  LibraryCatalog(Nil, Nil, Nil)
+}
+
+var catalog = initialCatalog
+
+
 object Main:
 
   def main(args: Array[String]): Unit =
-    var catalog = LibraryCatalog(Nil, Nil, Nil)
     var running = true
 
     while running do
