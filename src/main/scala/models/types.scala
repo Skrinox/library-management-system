@@ -19,4 +19,3 @@ object types:
         else if id.startsWith("faculty-") then "Faculty"
         else if id.startsWith("librarian-") then "Librarian"
         else "Unknown"
-

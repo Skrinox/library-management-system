@@ -12,5 +12,4 @@ final case class LibraryCatalog(
   
   def removeBook(isbn: ISBN): LibraryCatalog = copy(books = books.filterNot(_.isbn == isbn))
   def removeUser(userId: UserID): LibraryCatalog = copy(users = users.filterNot(_.id == userId))
-  def removeTransaction(transaction: Transaction): LibraryCatalog = copy(transactions = transactions.filterNot(_ == transaction))
-  
+  def removeTransaction(transaction: Transaction): LibraryCatalog =copy(transactions = transactions.filterNot(_ == transaction))
