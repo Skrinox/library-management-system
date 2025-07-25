@@ -10,9 +10,16 @@ import java.time.format.DateTimeFormatter
 
 object FileIO:
 
-  // Formats JSON simples (sans bibliothèque externe)
+  /**
+   * Formats for converting models to JSON strings.
+   */
   object JsonFormats:
 
+    /**
+     * Converts a Book to a JSON string.
+     * @param book the book to convert
+     * @return
+     */
     def bookToJson(book: Book): String =
       s"""{
          |  "isbn": "${book.isbn.value}",
@@ -23,6 +30,11 @@ object FileIO:
          |  "availability": "${book.availability}"
          |}""".stripMargin
 
+    /**
+     * Converts a User to a JSON string.
+     * @param user the user to convert
+     * @return
+     */
     def userToJson(user: User): String = user match
       case Student(id, name, email, major) =>
         s"""{
@@ -46,7 +58,12 @@ object FileIO:
            |  "name": "${escapeJson(name)}"
            |}""".stripMargin
 
-    def transactionToJson(transaction: Transaction): String =
+    /**
+     * Converts a Transaction to a JSON string.
+     * @param transaction the transaction to convert
+     * @return
+     */
+    private def transactionToJson(transaction: Transaction): String =
       s"""{
          |  "book": ${bookToJson(transaction.book)},
          |  "user": ${userToJson(transaction.user)},
@@ -54,6 +71,11 @@ object FileIO:
          |  "transactionType": "${transaction.transactionType}"
          |}""".stripMargin
 
+    /**
+     * Converts a LibraryCatalog to a JSON string.
+     * @param catalog the catalog to convert
+     * @return
+     */
     def catalogToJson(catalog: LibraryCatalog): String =
       s"""{
          |  "books": [
@@ -67,14 +89,24 @@ object FileIO:
          |  ]
          |}""".stripMargin
 
+    /**
+     * Escapes special characters in a JSON string.
+     * @param str the string to escape
+     * @return
+     */
     private def escapeJson(str: String): String =
       str.replace("\\", "\\\\")
-         .replace("\"", "\\\"")
-         .replace("\n", "\\n")
-         .replace("\r", "\\r")
-         .replace("\t", "\\t")
+        .replace("\"", "\\\"")
+        .replace("\n", "\\n")
+        .replace("\r", "\\r")
+        .replace("\t", "\\t")
 
-  // Sauvegarde des données
+  /**
+   * Saves the library catalog to a file in JSON format.
+   * @param catalog the library catalog to save
+   * @param filename the name of the file to save to
+   * @return
+   */
   def saveCatalogToFile(catalog: LibraryCatalog, filename: String): LibraryResult[Unit] =
     ErrorHandling.tryToEither {
       val json = JsonFormats.catalogToJson(catalog)
@@ -83,26 +115,43 @@ object FileIO:
       finally writer.close()
     }
 
+  /**
+   * Saves a list of books to a file in JSON format.
+   * @param books the list of books to save
+   * @param filename the name of the file to save to
+   * @return
+   */
   def saveBooksToFile(books: List[Book], filename: String): LibraryResult[Unit] =
     ErrorHandling.tryToEither {
       val json = s"""[
-        |  ${books.map(JsonFormats.bookToJson).mkString(",\n  ")}
-        |]""".stripMargin
+                    |  ${books.map(JsonFormats.bookToJson).mkString(",\n  ")}
+                    |]""".stripMargin
       val writer = new PrintWriter(new File(filename))
       try writer.write(json)
       finally writer.close()
     }
 
+  /**
+   * Saves a list of users to a file in JSON format.
+   * @param users the list of users to save
+   * @param filename the name of the file to save to
+   * @return
+   */
   def saveUsersToFile(users: List[User], filename: String): LibraryResult[Unit] =
     ErrorHandling.tryToEither {
       val json = s"""[
-        |  ${users.map(JsonFormats.userToJson).mkString(",\n  ")}
-        |]""".stripMargin
+                    |  ${users.map(JsonFormats.userToJson).mkString(",\n  ")}
+                    |]""".stripMargin
       val writer = new PrintWriter(new File(filename))
       try writer.write(json)
       finally writer.close()
     }
 
+  /**
+   * Loads the content of a file as a string.
+   * @param filename the name of the file to load
+   * @return
+   */
   def loadFileContent(filename: String): LibraryResult[String] =
     ErrorHandling.tryToEither {
       val source = Source.fromFile(filename)
@@ -110,7 +159,12 @@ object FileIO:
       finally source.close()
     }
 
-  def parseBookFromJson(jsonStr: String): LibraryResult[Book] =
+  /**
+   * Parses a Book from a JSON string.
+   * @param jsonStr the JSON string representing a book
+   * @return a LibraryResult containing the parsed Book or an error
+   */
+  private def parseBookFromJson(jsonStr: String): LibraryResult[Book] =
     ErrorHandling.tryToEither {
       val isbn = extractJsonValue(jsonStr, "isbn")
       val title = extractJsonValue(jsonStr, "title")
@@ -129,13 +183,24 @@ object FileIO:
       Book(ISBN(isbn), title, authors, year, genre, availability)
     }.left.map(error => ParseError("Failed to parse book from JSON", jsonStr))
 
+  /**
+   * Saves the library catalog to a file with a backup.
+   * @param catalog the library catalog to save
+   * @param filename the name of the file to save to
+   * @return
+   */
   def saveWithBackup(catalog: LibraryCatalog, filename: String): LibraryResult[Unit] =
     for
       _ <- createBackup(filename)
       _ <- saveCatalogToFile(catalog, filename)
     yield ()
 
-  def createBackup(filename: String): LibraryResult[Unit] =
+  /**
+   * Creates a backup of the specified file by copying its content to a new file with a timestamp.
+   * @param filename the name of the file to back up
+   * @return
+   */
+  private def createBackup(filename: String): LibraryResult[Unit] =
     val backupName = s"$filename.backup.${System.currentTimeMillis()}"
     ErrorHandling.tryToEither {
       val originalFile = new File(filename)
@@ -147,6 +212,12 @@ object FileIO:
         finally writer.close()
     }
 
+  /**
+   * Extracts a value from a JSON string by key.
+   * @param json the JSON string to search
+   * @param key the key to extract the value for
+   * @return
+   */
   private def extractJsonValue(json: String, key: String): String =
     val patternQuoted = s""""$key"\\s*:\\s*"([^"]*)"""".r
     val patternUnquoted = s""""$key"\\s*:\\s*([^",}\\s]+)""".r
@@ -156,12 +227,24 @@ object FileIO:
       .orElse(patternUnquoted.findFirstMatchIn(json).map(_.group(1)))
       .getOrElse(throw new IllegalArgumentException(s"Key '$key' not found in JSON"))
 
+  /**
+   * Extracts a JSON array from a string by key.
+   * @param json the JSON string to search
+   * @param key the key to extract the array for
+   * @return
+   */
   private def extractJsonArray(json: String, key: String): String =
-    val pattern = s""""$key"\\s*:\\s*\\[([^\\]]*)\\]""".r
+    val pattern = s"""\"$key\"\\s*:\\s*\\[([^]]*)]""".r
     pattern.findFirstMatchIn(json) match
       case Some(m) => m.group(1)
       case None => throw new IllegalArgumentException(s"Array '$key' not found in JSON")
 
+  /**
+   * Exports a report of the library catalog to a file.
+   * @param catalog the library catalog to generate the report for
+   * @param filename the name of the file to save the report to
+   * @return
+   */
   def exportCatalogReport(catalog: LibraryCatalog, filename: String): LibraryResult[Unit] =
     ErrorHandling.tryToEither {
       val report = generateCatalogReport(catalog)
@@ -170,6 +253,11 @@ object FileIO:
       finally writer.close()
     }
 
+  /**
+   * Generates a report string summarizing the library catalog.
+   * @param catalog the library catalog to summarize
+   * @return
+   */
   private def generateCatalogReport(catalog: LibraryCatalog): String =
     s"""Library Catalog Report
        |Generated on: ${LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)}
@@ -188,6 +276,11 @@ object FileIO:
        |${catalog.users.groupBy(_.getClass.getSimpleName).map { case (userType, users) => s"  $userType: ${users.length}" }.mkString("\n")}
        |""".stripMargin
 
+  /**
+   * Loads a library catalog from a JSON file.
+   * @param filename the name of the file to load
+   * @return
+   */
   def loadCatalogFromFile(filename: String): Option[LibraryCatalog] =
     loadFileContent(filename) match
       case Right(jsonStr) =>
@@ -209,6 +302,12 @@ object FileIO:
         println(s"Failed to read file $filename: ${err.message}")
         None
 
+  /**
+   * Extracts an array of JSON objects from a JSON string by key.
+   * @param json the JSON string to search
+   * @param key the key to extract the array for
+   * @return
+   */
   private def extractArray(json: String, key: String): List[String] = {
     val idxKey = json.indexOf(s""""$key"""")
     if (idxKey < 0) return Nil
@@ -269,6 +368,11 @@ object FileIO:
     elems.toList.map(_.trim).filter(_.nonEmpty)
   }
 
+  /**
+   * Parses a User from a JSON string.
+   * @param jsonStr the JSON string representing a user
+   * @return a LibraryResult containing the parsed User or an error
+   */
   private def parseUserFromJson(jsonStr: String): LibraryResult[User] =
     ErrorHandling.tryToEither {
       val id = extractJsonValue(jsonStr, "id")
@@ -287,6 +391,11 @@ object FileIO:
         case other => throw new IllegalArgumentException(s"Unknown user type: $other")
     }.left.map(error => ParseError("Failed to parse user", jsonStr))
 
+  /**
+   * Parses a Transaction from a JSON string.
+   * @param jsonStr the JSON string representing a transaction
+   * @return a LibraryResult containing the parsed Transaction or an error
+   */
   private def parseTransactionFromJson(jsonStr: String): LibraryResult[Transaction] =
     ErrorHandling.tryToEither {
       val bookJson = extractNestedJson(jsonStr, "book")
@@ -300,8 +409,14 @@ object FileIO:
       Transaction(book, user, time, transactionType)
     }.left.map(error => ParseError("Failed to parse transaction", jsonStr))
 
+  /**
+   * Extracts a nested JSON object from a JSON string by key.
+   * @param json the JSON string to search
+   * @param key the key to extract the nested object for
+   * @return the nested JSON object as a string
+   */
   private def extractNestedJson(json: String, key: String): String =
-    val pattern = s""""$key"\\s*:\\s*\\{(.*?)\\}""".r
+    val pattern = s"""\"$key\"\\s*:\\s*\\{(.*?)}""".r
     pattern.findFirstMatchIn(json) match
       case Some(m) => "{" + m.group(1) + "}"
       case None => throw new IllegalArgumentException(s"Nested object '$key' not found")

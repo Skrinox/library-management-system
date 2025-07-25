@@ -6,7 +6,7 @@ import models.types._
 
 class SearchSpec extends AnyFunSuite {
 
-  val books = List(
+  val books: List[Book] = List(
     Book(ISBN("978-2-253085-79-9"), "Le Père Goriot", List("Honoré de Balzac"), 1835, Genre.Classic, Availability.Available),
     Book(ISBN("978-2-070394-38-8"), "La Peste", List("Albert Camus"), 1947, Genre.Fiction, Availability.CheckedOut),
     Book(ISBN("978-2-070360-02-4"), "L'Étranger", List("Albert Camus"), 1942, Genre.Fiction, Availability.Available),

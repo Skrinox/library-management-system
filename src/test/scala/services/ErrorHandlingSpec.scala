@@ -6,7 +6,7 @@ import models.types._
 
 class ErrorHandlingSpec extends AnyFunSuite {
 
-  val validBook = Book(
+  val validBook: Book = Book(
     ISBN("978-0-123456-78-9"),
     "Test Book",
     List("Test Author"),
@@ -15,7 +15,7 @@ class ErrorHandlingSpec extends AnyFunSuite {
     Availability.Available
   )
 
-  val checkedOutBook = Book(
+  val checkedOutBook: Book = Book(
     ISBN("978-0-987654-32-1"),
     "Checked Out Book",
     List("Another Author"),
@@ -24,14 +24,14 @@ class ErrorHandlingSpec extends AnyFunSuite {
     Availability.CheckedOut
   )
 
-  val validStudent = Student(
+  val validStudent: Student = Student(
     UserID("student-001"),
     "John Doe",
     "john@example.com",
     "Computer Science"
   )
 
-  val catalog = LibraryCatalog(List(validBook, checkedOutBook), List(validStudent), Nil)
+  val catalog: LibraryCatalog = LibraryCatalog(List(validBook, checkedOutBook), List(validStudent), Nil)
 
   test("validateISBNDetailed with valid ISBN") {
     val result = ErrorHandling.validateISBNDetailed("978-0-123456-78-9")

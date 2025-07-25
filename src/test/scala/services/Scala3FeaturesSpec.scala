@@ -3,11 +3,10 @@ package services
 import org.scalatest.funsuite.AnyFunSuite
 import models._
 import models.types._
-import services._ 
 
 class Scala3FeaturesSpec extends AnyFunSuite {
 
-  val testBook = Book(
+  val testBook: Book = Book(
     ISBN("978-0-123456-78-9"),
     "Test Book",
     List("Test Author"),
@@ -16,7 +15,7 @@ class Scala3FeaturesSpec extends AnyFunSuite {
     Availability.Available
   )
 
-  val testUser = Student(
+  val testUser: Student = Student(
     UserID("student-001"),
     "John Doe",
     "john@example.com",

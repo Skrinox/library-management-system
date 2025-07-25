@@ -60,7 +60,7 @@ object Search:
    * @param f2 Second predicate
    * @return A predicate that is true if both f1 and f2 are true
    */
-  def composeFilters(f1: Book => Boolean, f2: Book => Boolean): Book => Boolean =
+  private def composeFilters(f1: Book => Boolean, f2: Book => Boolean): Book => Boolean =
     book => f1(book) && f2(book)
 
   /**

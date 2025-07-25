@@ -48,7 +48,7 @@ object ErrorHandling:
    * Validates an ISBN using a regex and wraps it in an `Option`.
    */
   def validateISBN(isbn: String): Option[ISBN] =
-    Option.when(isbn.matches("""^\d{3}-\d{1,5}-\d{1,7}-\d{1,7}-\d{1}$"""))(ISBN(isbn))
+    Option.when(isbn.matches("""^\d{3}-\d{1,5}-\d{1,7}-\d{1,7}-\d$"""))(ISBN(isbn))
 
   /**
    * Validates an ISBN and returns a detailed error if invalid.
@@ -89,7 +89,7 @@ object ErrorHandling:
   /**
    * Finds a user by ID in the provided user list.
    */
-  def findUserById(users: List[User], userId: UserID): LibraryResult[User] =
+  private def findUserById(users: List[User], userId: UserID): LibraryResult[User] =
     users.find(_.id == userId) match
       case Some(user) => Right(user)
       case None => Left(NotFoundError(s"User with ID ${userId.value} not found"))

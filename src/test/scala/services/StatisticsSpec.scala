@@ -6,7 +6,7 @@ import models.types._
 
 class StatisticsSpec extends AnyFunSuite {
 
-  val books = List(
+  val books: List[Book] = List(
     Book(ISBN("978-2253085799"), "Le Père Goriot", List("Honoré de Balzac"), 1835, Genre.Classic, Availability.Available),
     Book(ISBN("978-2070394388"), "La Peste", List("Albert Camus"), 1947, Genre.Fiction, Availability.CheckedOut),
     Book(ISBN("978-2070360024"), "L'Étranger", List("Albert Camus"), 1942, Genre.Fiction, Availability.Available),

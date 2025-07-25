@@ -10,7 +10,7 @@ import java.time.LocalDateTime
 class FileIOSpec extends AnyFunSuite with BeforeAndAfterEach {
 
   val testFile = "test-catalog.json"
-  val testBook = Book(
+  val testBook: Book = Book(
     ISBN("978-0-123456-78-9"),
     "Test Book",
     List("Test Author"),
@@ -19,21 +19,21 @@ class FileIOSpec extends AnyFunSuite with BeforeAndAfterEach {
     Availability.Available
   )
   
-  val testUser = Student(
+  val testUser: Student = Student(
     UserID("student-001"),
     "John Doe",
     "john@example.com",
     "Computer Science"
   )
   
-  val testTransaction = Transaction(
+  val testTransaction: Transaction = Transaction(
     testBook,
     testUser,
     LocalDateTime.now(),
     TransactionType.Borrow
   )
   
-  val testCatalog = LibraryCatalog(List(testBook), List(testUser), List(testTransaction))
+  val testCatalog: LibraryCatalog = LibraryCatalog(List(testBook), List(testUser), List(testTransaction))
 
   override def afterEach(): Unit = {
     // Nettoyer les fichiers de test

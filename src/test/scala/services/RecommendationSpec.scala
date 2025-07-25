@@ -6,12 +6,12 @@ import models.types._
 
 class RecommendationSpec extends AnyFunSuite {
 
-  val book1 = Book(ISBN("978-2-253085-79-9"), "Le Père Goriot", List("Honoré de Balzac"), 1835, Genre.Classic, Availability.Available)
-  val book2 = Book(ISBN("978-2-070394-38-8"), "La Peste", List("Albert Camus"), 1947, Genre.Fiction, Availability.CheckedOut)
-  val book3 = Book(ISBN("978-2-070360-02-4"), "L'Étranger", List("Albert Camus"), 1942, Genre.Fiction, Availability.Available)
-  val book4 = Book(ISBN("979-1-035826-85-7"), "Les Misérables", List("Victor Hugo"), 1862, Genre.Classic, Availability.CheckedOut)
+  val book1: Book = Book(ISBN("978-2-253085-79-9"), "Le Père Goriot", List("Honoré de Balzac"), 1835, Genre.Classic, Availability.Available)
+  val book2: Book = Book(ISBN("978-2-070394-38-8"), "La Peste", List("Albert Camus"), 1947, Genre.Fiction, Availability.CheckedOut)
+  val book3: Book = Book(ISBN("978-2-070360-02-4"), "L'Étranger", List("Albert Camus"), 1942, Genre.Fiction, Availability.Available)
+  val book4: Book = Book(ISBN("979-1-035826-85-7"), "Les Misérables", List("Victor Hugo"), 1862, Genre.Classic, Availability.CheckedOut)
 
-  val catalog = List(book1, book2, book3, book4)
+  val catalog: List[Book] = List(book1, book2, book3, book4)
 
   test("recommend books from same genres not already read") {
     val userHistory = List(book1) 

@@ -7,7 +7,7 @@ import models.types._
 class ValidationSpec extends AnyFunSuite {
 
   // Utilisez des ISBNs avec le bon format
-  val validBook = Book(
+  val validBook: Book = Book(
     ISBN("978-2-253085-79-9"), // Format corrigé avec tirets
     "Le Père Goriot",
     List("Honoré de Balzac"),
@@ -16,7 +16,7 @@ class ValidationSpec extends AnyFunSuite {
     Availability.Available
   )
 
-  val invalidBook = Book(
+  val invalidBook: Book = Book(
     ISBN("978-0-123456-78-9"),
     "",  // Titre vide
     Nil, // Pas d'auteurs
@@ -25,26 +25,26 @@ class ValidationSpec extends AnyFunSuite {
     Availability.Available
   )
 
-  val validStudent = Student(
+  val validStudent: Student = Student(
     UserID("student-enzo"),
     "Enzo",
     "enzo@example.com",
     "Computer Science"
   )
 
-  val incompleteStudent = Student(
+  val incompleteStudent: Student = Student(
     UserID("student-incomplete"),
     "",  // Nom vide
     "invalid-email",  // Email invalide
     ""   // Major vide
   )
 
-  val emptyLibrarian = Librarian(
+  val emptyLibrarian: Librarian = Librarian(
     UserID("lib-001"),
     ""   // Nom vide
   )
 
-  val unavailableBook = Book(
+  val unavailableBook: Book = Book(
     ISBN("978-2-253085-79-9"),
     "Le Père Goriot",
     List("Honoré de Balzac"),
