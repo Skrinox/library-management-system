@@ -18,6 +18,9 @@ A simple Scala-based library catalog system allowing users to manage books, user
 ```
 library-management-system/
 ├── build.sbt
+├── docs/
+│ └── scaladoc/
+│ └── index.html
 ├── data/
 │   └── catalog.json
 ├── src/
@@ -48,6 +51,8 @@ To generate Scaladoc in the `docs/scaladoc` folder:
 ```bash
 sbt doc
 ```
+
+And then open the `docs/scaladoc/index.html` file.
 
 ## Backup System
 
