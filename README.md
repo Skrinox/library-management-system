@@ -2,6 +2,8 @@
 
 A simple Scala-based library catalog system allowing users to manage books, users, and transactions via a terminal interface.
 
+[📺 Demo video (5 min)](https://youtu.be/T2J2i9RL9IQ)
+
 ## Features
 
 - Add, list, and remove books
