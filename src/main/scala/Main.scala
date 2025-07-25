@@ -12,7 +12,7 @@ import scala.io.StdIn.readLine
 import services.FileIO
 
 val initialCatalog = FileIO.loadCatalogFromFile("data/catalog.json").getOrElse {
-  println("⚠️ Failed to load catalog.json, starting with empty catalog.")
+  println("Failed to load catalog.json, starting with empty catalog.")
   LibraryCatalog(Nil, Nil, Nil)
 }
 
@@ -35,7 +35,8 @@ object Main:
           |5. Borrow a book
           |6. Return a book
           |7. Show transactions
-          |8. Quit
+          |8. View statistics
+          |9. Quit
           |===========================
           |""".stripMargin)
 
@@ -147,6 +148,25 @@ object Main:
           )
 
         case "8" =>
+          val books = catalog.books
+          if books.isEmpty then
+            println("No books available for statistics.")
+          else
+            println("=== Library Statistics ===")
+            println(s"Total books: ${Statistics.totalBooks(books)}")
+            println(s"Available books: ${Statistics.countAvailableBooks(books)}")
+            println("Books per genre:")
+            Statistics.booksPerGenre(books).foreach { case (genre, count) =>
+              println(s"  $genre: $count")
+            }
+            Statistics.oldestBook(books).foreach(b => println(s"Oldest book: ${b.title} (${b.publicationYear})"))
+            Statistics.newestBook(books).foreach(b => println(s"Newest book: ${b.title} (${b.publicationYear})"))
+
+        case "9" =>
+          FileIO.saveWithBackup(catalog, "data/catalog.json") match
+            case Left(err) => println(s"Failed to save catalog: ${err.message}")
+            case Right(_)  => println("Catalog saved successfully with backup.")
+
           println("Bye :3!")
           running = false
 
