@@ -70,14 +70,21 @@ object ErrorHandling:
     else Left(UnavailableError(s"Book '${book.title}' is currently ${book.availability}"))
   
   // Combinaison de validations
-  def validateBookData(isbn: String, title: String, authors: List[String], year: Int): LibraryResult[Book] =
+  def validateBookData(
+    isbn: String,
+    title: String,
+    authors: List[String],
+    year: Int,
+    genre: Genre,
+    availability: Availability
+  ): LibraryResult[Book] =
     for
       validISBN <- validateISBNDetailed(isbn)
       validYear <- validatePublicationYear(year)
       validTitle <- if title.trim.nonEmpty then Right(title) else Left(ValidationError("Title cannot be empty"))
       validAuthors <- if authors.nonEmpty then Right(authors) else Left(ValidationError("Book must have at least one author"))
-    yield Book(validISBN, validTitle, validAuthors, validYear, Genre.Fiction, Availability.Available)
-  
+    yield Book(validISBN, validTitle, validAuthors, validYear, genre, availability)
+
   def validateStudentData(id: String, name: String, email: String, major: String): LibraryResult[Student] =
     for
       validEmail <- validateEmail(email)

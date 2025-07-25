@@ -85,15 +85,7 @@ class ValidationSpec extends AnyFunSuite {
 
   test("rejects a transaction when book is unavailable") {
     val result = Validation.validateTransaction(unavailableBook, validStudent)
-    // Ajoutons du debugging pour voir ce qui se passe
-    println(s"Test result: $result")
-    result match {
-      case Left(error) => 
-        println(s"Error message: $error")
-        assert(true) // Le test réussit si on a une erreur
-      case Right(_) => 
-        println("Transaction was unexpectedly successful")
-        assert(false, "Expected transaction to fail for unavailable book")
-    }
+    assert(result.isLeft)
+    assert(result.left.exists(_.contains("currently CheckedOut")))
   }
 }

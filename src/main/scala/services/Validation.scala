@@ -10,7 +10,9 @@ object Validation:
       book.isbn.value,
       book.title,
       book.authors,
-      book.publicationYear
+      book.publicationYear,
+      book.genre,
+      book.availability
     ).left.map(_.message)
 
   def validateUser(user: User): Either[String, User] = user match
@@ -32,6 +34,5 @@ object Validation:
     for
       b <- validateBook(book)
       u <- validateUser(user)
-      availableBook <- if b.isAvailable then Right(b) 
-                      else Left(s"Book '${b.title}' is currently ${b.availability} and cannot be borrowed")
+      availableBook <- ErrorHandling.checkAvailability(b).left.map(_.message)
     yield (availableBook, u)

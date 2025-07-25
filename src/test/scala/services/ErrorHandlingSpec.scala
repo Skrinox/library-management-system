@@ -14,16 +14,23 @@ class ErrorHandlingSpec extends AnyFunSuite {
     Genre.Fiction,
     Availability.Available
   )
-  
-  val checkedOutBook = validBook.copy(availability = Availability.CheckedOut)
-  
+
+  val checkedOutBook = Book(
+    ISBN("978-0-987654-32-1"),
+    "Checked Out Book",
+    List("Another Author"),
+    2019,
+    Genre.Fiction,
+    Availability.CheckedOut
+  )
+
   val validStudent = Student(
     UserID("student-001"),
     "John Doe",
     "john@example.com",
     "Computer Science"
   )
-  
+
   val catalog = LibraryCatalog(List(validBook, checkedOutBook), List(validStudent), Nil)
 
   test("validateISBNDetailed with valid ISBN") {
@@ -96,7 +103,9 @@ class ErrorHandlingSpec extends AnyFunSuite {
       "978-0-123456-78-9",
       "Test Book",
       List("Author"),
-      2020
+      2020,
+      Genre.Fiction,
+      Availability.Available
     )
     assert(result.isRight)
   }
@@ -106,7 +115,9 @@ class ErrorHandlingSpec extends AnyFunSuite {
       "invalid-isbn",
       "",
       Nil,
-      -1
+      -1,
+      Genre.Fiction,
+      Availability.Available
     )
     assert(result.isLeft)
   }
