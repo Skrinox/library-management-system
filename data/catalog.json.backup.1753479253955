@@ -1,6 +1,22 @@
 {
   "books": [
     {
+  "isbn": "978-0-000000-01-7",
+  "title": "Radio Eden",
+  "authors": ["Hassan Ait Lahcen"],
+  "publicationYear": 1995,
+  "genre": "SciFi",
+  "availability": "CheckedOut"
+},
+    {
+  "isbn": "999-9-999999-999-9",
+  "title": "Martine",
+  "authors": ["jjk"],
+  "publicationYear": 1990,
+  "genre": "Classic",
+  "availability": "Available"
+},
+    {
   "isbn": "978-0-000000-01-9",
   "title": "Terminal Elegy",
   "authors": ["Lucian Petrescu"],
@@ -143,25 +159,16 @@
   "publicationYear": 2002,
   "genre": "Fiction",
   "availability": "Available"
-},
-    {
-  "isbn": "978-0-000000-01-7",
-  "title": "Radio Eden",
-  "authors": ["Hassan Ait Lahcen"],
-  "publicationYear": 1995,
-  "genre": "SciFi",
-  "availability": "Available"
-},
-    {
-  "isbn": "978-0-000000-01-8",
-  "title": "Shadows Made Real",
-  "authors": ["Anja Fischer"],
-  "publicationYear": 2018,
-  "genre": "Fiction",
-  "availability": "Available"
 }
   ],
   "users": [
+    {
+  "type": "Student",
+  "id": "70",
+  "name": "Hug",
+  "email": "hug@gmail.com",
+  "major": "5"
+},
     {
   "type": "Student",
   "id": "69",
@@ -263,21 +270,21 @@
   "transactions": [
     {
   "book": {
-  "isbn": "978-0-000000-01-9",
-  "title": "Terminal Elegy",
-  "authors": ["Lucian Petrescu"],
-  "publicationYear": 2005,
-  "genre": "Classic",
+  "isbn": "978-0-000000-01-7",
+  "title": "Radio Eden",
+  "authors": ["Hassan Ait Lahcen"],
+  "publicationYear": 1995,
+  "genre": "SciFi",
   "availability": "CheckedOut"
 },
   "user": {
   "type": "Student",
-  "id": "69",
-  "name": "martin",
-  "email": "martin@gmail.com",
+  "id": "70",
+  "name": "Hug",
+  "email": "hug@gmail.com",
   "major": "5"
 },
-  "timestamp": "2025-07-25T23:21:01.949",
+  "timestamp": "2025-07-25T23:29:50.032",
   "transactionType": "Borrow"
 }
   ]
