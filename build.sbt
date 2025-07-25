@@ -14,3 +14,5 @@ lazy val root = (project in file("."))
       "io.circe" %% "circe-parser" % "0.14.6"
     )
   )
+
+Compile / doc / target := baseDirectory.value / "docs/scaladoc"
